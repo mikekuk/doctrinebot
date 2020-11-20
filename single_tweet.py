@@ -21,4 +21,4 @@ for sentnace in sentance_list:
         tweet += sentnace + '. '
 
 print(tweet)
-# api.update_status(tweet)
+api.update_status(tweet)
