@@ -8,9 +8,12 @@ Due to size constriants, the model and checkpoints are not included in the repo.
 
 DoctrineBot is hosted on an AWS EC2 instance. tweeter.py is run from crontab envry 5 miniutes, and single_tweet.py is run every 5 hours. To run pipenv enviroments from crontab, it is best to write a shell script to define the correct PATH, cd into the directory before running. As below:
 
-#!/usr/bin/env bash \n
-PATH=/usr/local/bin/:$PATH \n
-cd doctrinebot/ \n
+#!/usr/bin/env bash
+
+PATH=/usr/local/bin/:$PATH
+
+cd doctrinebot/
+
 pipenv run python example.py >> ~/log.txt 2>&1
 
 ## generate.py
