@@ -77,5 +77,5 @@ if __name__ == '__main__':
     api = login(twitter_keys)
     mentions = get_mentions()
 
-    # print(mentions.que)
-    post_replies(mentions)
+    print(mentions.que)
+    # post_replies(mentions)

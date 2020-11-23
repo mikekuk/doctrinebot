@@ -3,15 +3,6 @@ import os
 import requests
 import re
 
-# model_name = "774M"
-# if not os.path.isdir(os.path.join("models", model_name)):
-# 	print(f"Downloading {model_name} model...")
-# 	gpt2.download_gpt2(model_name=model_name)   # model is saved into current directory under /models/124M/
-
-
-# user_input = "The Royal Logistics Corps is"
-
-
 sess = gpt2.start_tf_sess()
 gpt2.load_gpt2(sess)
 
