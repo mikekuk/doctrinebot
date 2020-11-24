@@ -78,4 +78,4 @@ if __name__ == '__main__':
     mentions = get_mentions()
 
     print(mentions.que)
-    # post_replies(mentions)
+    post_replies(mentions)
