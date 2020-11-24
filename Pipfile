@@ -7,6 +7,7 @@ name = "pypi"
 install = "*"
 gpt-2-simple = "*"
 tweepy = "*"
+tensorflow = "==1.15.4"
 
 [dev-packages]
 pylint = "*"
