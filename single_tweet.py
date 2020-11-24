@@ -1,24 +1,13 @@
 import tweepy
 from generate import single_tweet
 from tweeter import login, twitter_keys
+from parse_txt import parse_for_tweeter
 import re
 
 api = login(twitter_keys)
 string = single_tweet()
 
-para_number_regex = re.compile(r'[0-9]+[\.|\-][A-Z]?[\.|\-]?[0-9]+\.\s?')
-para_numbers = re.findall(para_number_regex, string)
-maping = {}
-for match in para_numbers:
-    maping[match] = ''
-for i, j in maping.items():
-    string = string.replace(i, j)
-
-sentance_list = string.split('.')
-tweet = ""
-for sentnace in sentance_list:
-    if len(tweet) + len(sentnace) <= 280:
-        tweet += sentnace + '. '
+tweet = parse_for_tweeter(string)
 
 print(tweet)
 api.update_status(tweet)

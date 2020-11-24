@@ -17,26 +17,7 @@ def parse_text(text):
 
 # print(parse_text(text))
 
-
 def parse_for_tweeter(string):
-
-    # remove para number
-    para_number_regex = re.compile(r'[1-9]+[\.|\-][A-Z]?[\.|\-]?[1-9]+\.\s?')
-    para_numbers = re.findall(para_number_regex, string)
-    maping = {}
-    for match in para_numbers:
-        maping[match] = ''
-    for i, j in maping.items():
-        string = string.replace(i, j)
-
-    # remove line breakes
-    linebreak_regex = re.compile(r'[\r\n]')
-    linebreakes = re.findall(linebreak_regex, string)
-    maping_lines = {}
-    for match in linebreakes:
-        maping_lines[match] = ''
-    for i, j in maping_lines.items():
-        string = string.replace(i, j)
 
     # truncate at last sentance before 250 char
     sentance_list = string.split('.')

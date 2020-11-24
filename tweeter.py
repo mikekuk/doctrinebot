@@ -3,7 +3,7 @@ import json
 from generate import make_text
 from parse_txt import parse_for_tweeter
 
-account = 'botdoctrine'
+account = 'BotDoctrine'
 
 with open('keys.json', 'r') as json_file:
     twitter_keys = json.load(json_file)
@@ -31,7 +31,7 @@ class Tweet:
     def __init__(self, text, username, id):
         self.username = username.lower()
         self.text = str(text).lower()
-        self.hook = self.text.replace(f'@{account}', '')
+        self.hook = self.text.replace(f'@{account}', '').replace(f'@{account}'.lower(), '').replace(f'@{account}'.upper(), '')
         self.id = id
 
 def login(twitter_keys):
