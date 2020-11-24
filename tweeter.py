@@ -30,7 +30,7 @@ class MessageQue:
 class Tweet:
     def __init__(self, text, username, id):
         self.username = username.lower()
-        self.text = str(text).lower()
+        self.text = str(text)
         self.hook = self.text.replace(f'@{account}', '').replace(f'@{account}'.lower(), '').replace(f'@{account}'.upper(), '')
         self.id = id
 

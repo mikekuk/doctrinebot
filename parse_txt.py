@@ -10,10 +10,13 @@ def parse_for_tweeter(string):
     sentance_list = string.split('.')
     new_string = ""
     for sentnace in sentance_list:
-        if len(new_string) + len(sentnace) <= 250:
-            new_string += sentnace + '.'
+        if len(sentnace) <= 249:
+            if len(new_string) + len(sentnace) <= 250:
+                new_string += sentnace + '.'
+            else:
+                return new_string
         else:
-            return new_string
+            return sentnace[0:249]
 
 
 if __name__ == "__main__":
