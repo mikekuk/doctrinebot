@@ -31,7 +31,7 @@ class Tweet:
     def __init__(self, text, username, id):
         self.username = username.lower()
         self.text = str(text)
-        self.hook = self.text.replace(f'@{account}', '').replace(f'@{account}'.lower(), '').replace(f'@{account}'.upper(), '')
+        self.hook = self.text.replace(f'@{account} ', '').replace(f'@{account.lower()} ', '')
         self.id = id
 
 def login(twitter_keys):
@@ -57,14 +57,15 @@ def post_replies(que):
     while que.length > 0:
         tweet = que.pop()
         doctrine = make_text(tweet.hook)
+        print(doctrine)
         tweet_reply = parse_for_tweeter(doctrine)
         print("-------------------")
         print(f'@{tweet.username}: {tweet_reply}')
-        try:
-            api.update_status(f'@{tweet.username} {tweet_reply}', tweet.id)
-        except:
-            print('tweepy error')
-            pass
+        # try:
+        #     api.update_status(f'@{tweet.username} {tweet_reply}', tweet.id)
+        # except:
+        #     print('tweepy error')
+        #     pass
         print("-------------------")
 
         latest_id = tweet.id
@@ -72,10 +73,8 @@ def post_replies(que):
             doc.write(str(latest_id))
             doc.close()
 
-
 if __name__ == '__main__':
     api = login(twitter_keys)
     mentions = get_mentions()
 
-    print(mentions.que)
     post_replies(mentions)
