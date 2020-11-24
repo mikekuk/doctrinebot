@@ -61,11 +61,11 @@ def post_replies(que):
         tweet_reply = parse_for_tweeter(doctrine)
         print("-------------------")
         print(f'@{tweet.username}: {tweet_reply}')
-        # try:
-        #     api.update_status(f'@{tweet.username} {tweet_reply}', tweet.id)
-        # except:
-        #     print('tweepy error')
-        #     pass
+        try:
+            api.update_status(f'@{tweet.username} {tweet_reply}', tweet.id)
+        except:
+            print('tweepy error')
+            pass
         print("-------------------")
 
         latest_id = tweet.id
