@@ -9,5 +9,9 @@ string = single_tweet()
 
 tweet = parse_for_tweeter(string)
 
-print(tweet)
 api.update_status(tweet)
+
+if __name__ == '__main__':
+    print('\n--------------------\n')
+    print(tweet)
+    print('\n--------------------\n')
