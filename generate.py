@@ -24,7 +24,7 @@ def make_text(user_input):
     return text.replace('<|startoftext|>', '')
 
 def single_tweet():
-    return gpt2.generate(sess, length=200, return_as_list=True, temperature=1, prefix='<|startoftext|>', include_prefix=False, truncate='<|endoftext|>')[0]
+    return gpt2.generate(sess, length=200, return_as_list=True, temperature=1, prefix='<|startoftext|>', include_prefix=False, truncate='<|endoftext|>')[0].replace('<|startoftext|>', '')
 
 if __name__ == "__main__":
     print("\n --------------------- \n")
