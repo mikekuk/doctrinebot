@@ -57,6 +57,8 @@ def post_replies(que):
     while que.length > 0:
         tweet = que.pop()
         doctrine = make_text(tweet.hook)
+        if (tweet.hook[-1] == '?') or (len(tweet.hook) >= 120):
+        doctrine = doctrine[len(tweet.hook)+1:]
         print(doctrine)
         tweet_reply = parse_for_tweeter(doctrine)
         print("-------------------")
