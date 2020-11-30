@@ -9,9 +9,11 @@ Due to size constraints, the model and checkpoints are not included in the repo.
 DoctrineBot is hosted on an AWS EC2 instance. Scripts are run from crontab. To run pipenv environments from crontab, it is best to write a shell script to define the correct PATH, cd into the directory before running. As below:
 
 > latest_id='1332777243836354564'
+
 > echo $latest_id > latest_id.txt
 
 > nano run.sh
+
 Copy and past in ..
 
 #!/usr/bin/env bas
@@ -20,6 +22,7 @@ cd doctrinebot/
 pipenv run python tweeter.py >> ~/log.txt 2>&1
 
 > nano single_tweet.sh
+
 Copy and past in ..
 
 #!/usr/bin/env bas
