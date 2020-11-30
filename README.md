@@ -16,24 +16,24 @@ DoctrineBot is hosted on an AWS EC2 instance. Scripts are run from crontab. To r
 
 Copy and past in ..
 
-#!/usr/bin/env bas
-PATH=/usr/local/bin/:$PATH
-cd doctrinebot/
+#!/usr/bin/env bas </br>
+PATH=/usr/local/bin/:$PATH </br>
+cd doctrinebot/</br>
 pipenv run python tweeter.py >> ~/log.txt 2>&1
 
 > nano single_tweet.sh
 
 Copy and past in ..
 
-#!/usr/bin/env bas
-PATH=/usr/local/bin/:$PATH
-cd doctrinebot/
+#!/usr/bin/env bas </br>
+PATH=/usr/local/bin/:$PATH </br>
+cd doctrinebot/ </br>
 pipenv run python single_tweet.py >> ~/log.txt 2>&1
 
 
 > crontab -e
 
-0,3,6 8-23 * * * ./doctrinebot/run.sh >/dev/null 2>&1
+0,3,6 8-23 * * * ./doctrinebot/run.sh >/dev/null 2>&1 </br>
 0 8,14,20 * * * ./doctrinebot/single_tweet.sh >/dev/null 2>&1
 
 ## generate.py
