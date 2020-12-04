@@ -1,5 +1,6 @@
 import tweepy
 import json
+import re
 from generate import make_text
 from parse_txt import parse_for_tweeter
 
@@ -31,8 +32,10 @@ class Tweet:
     def __init__(self, text, username, id):
         self.username = username.lower()
         self.text = str(text)
-        self.hook = self.text.replace(f'@{account} ', '').replace(f'@{account.lower()} ', '')
+        self._account_removed = re.sub(rf'(?i)@{account}', '', self.text)
+        self.hook = re.sub(r'https://\S+', '', self._account_removed)
         self.id = id
+
 
 def login(twitter_keys):
     auth = tweepy.OAuthHandler(twitter_keys["CONSUMER_KEY"], twitter_keys["CONSUMER_SECRET"])
@@ -57,9 +60,11 @@ def post_replies(que):
     while que.length > 0:
         tweet = que.pop()
         doctrine = make_text(tweet.hook)
-        if (tweet.hook[-1] == '?') or (len(tweet.hook) >= 120):
+        print(f'hook = {tweet.hook}')
+        # Remeoves prefix if ends in qyestion mark or over 120 char
+        print(f'Hook length = {len(tweet.hook)} and doc = {doctrine}')
+        if ((re.sub(r'\s', '', tweet.hook))[-1] == '?' ) or (len(tweet.hook) >= 120):
             doctrine = doctrine[len(tweet.hook)+1:]
-        print(doctrine)
         tweet_reply = parse_for_tweeter(doctrine)
         print("-------------------")
         print(f'@{tweet.username}: {tweet_reply}')
