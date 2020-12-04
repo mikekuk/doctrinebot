@@ -57,21 +57,32 @@ def get_mentions():
     return que
 
 def post_replies(que):
-    while que.length > 0:
-        tweet = que.pop()
-        doctrine = make_text(tweet.hook)
-        print(f'hook = {tweet.hook}')
+    def create_reply(hook):
+        doctrine = make_text(hook)
+        print(f'hook = {hook}')
         # Remeoves prefix if ends in qyestion mark or over 120 char
-        print(f'Hook length = {len(tweet.hook)} and doc = {doctrine}')
-        if ((re.sub(r'\s', '', tweet.hook))[-1] == '?' ) or (len(tweet.hook) >= 120):
-            doctrine = doctrine[len(tweet.hook)+1:]
+        print(f'Hook length = {len(hook)} and doc = {doctrine}')
+        if ((re.sub(r'\s', '', hook))[-1] == '?' ) or (len(hook) >= 120):
+            doctrine = doctrine[len(hook)+1:]
         tweet_reply = parse_for_tweeter(doctrine)
         print("-------------------")
         print(f'@{tweet.username}: {tweet_reply}')
+        print("-------------------")
+        return tweet_reply
+
+    while que.length > 0:
+        tweet = que.pop()
+        reply = create_reply(tweet.hook)
         try:
-            api.update_status(f'@{tweet.username} {tweet_reply}', tweet.id)
+            api.update_status(f'@{tweet.username} {reply}', tweet.id)
         except:
-            print('tweepy error')
+            print('tweepy error trying agian')
+            try:
+                reply = create_reply(tweet.hook)
+                api.update_status(f'@{tweet.username} {reply}', tweet.id)
+            except:
+                print('seccond error')
+                pass
             pass
         print("-------------------")
 
