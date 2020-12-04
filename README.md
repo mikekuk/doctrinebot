@@ -16,7 +16,6 @@ DoctrineBot is hosted on an AWS EC2 instance. Scripts are run from crontab. To r
 
 Copy and past in ..
 
-#!/usr/bin/env bas </br>
 PATH=/usr/local/bin/:$PATH </br>
 cd doctrinebot/</br>
 pipenv run python tweeter.py >> ~/log.txt 2>&1
@@ -25,7 +24,6 @@ pipenv run python tweeter.py >> ~/log.txt 2>&1
 
 Copy and past in ..
 
-#!/usr/bin/env bas </br>
 PATH=/usr/local/bin/:$PATH </br>
 cd doctrinebot/ </br>
 pipenv run python single_tweet.py >> ~/log.txt 2>&1
