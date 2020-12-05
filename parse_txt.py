@@ -4,7 +4,7 @@ text = "the threat from China is on its doorstep, we need to defend ourselves an
 
 def parse_for_tweeter(string):    
     # truncate at last sentance before 250 char
-    sentance_list = re.split(r'(?<=[.!?]) +', string)
+    sentance_list = re.split(r'(?<=[.!?;]) +', string)
     # sentance_list = string.split('.')
     if len(sentance_list[0]) > 249:
             return sentance_list[0][0:249]
