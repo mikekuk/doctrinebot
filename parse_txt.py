@@ -1,10 +1,10 @@
 import re
 
-text = "the threat from China is on its doorstep, we need to defend ourselves and our territories very effectively. We can't stand idly by and watch as our territory is eroded and our people are displaced."
+text = "the threat from China is on its doorstep, \n we need to defend ourselves and our territories very effectively. We can't stand idly by and watch as our territory is eroded and our people are displaced."
 
 def parse_for_tweeter(string):    
     # truncate at last sentance before 250 char
-    sentance_list = re.split(r'(?<=[.!?;]) +', string)
+    sentance_list = re.split(r'(?<=[.!?;\n]) +', string)
     # sentance_list = string.split('.')
     if len(sentance_list[0]) > 249:
             return sentance_list[0][0:249]
