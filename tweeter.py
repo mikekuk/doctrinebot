@@ -73,17 +73,20 @@ def post_replies(que):
     while que.length > 0:
         tweet = que.pop()
         reply = create_reply(tweet.hook)
-        try:
-            api.update_status(f'@{tweet.username} {reply}', tweet.id)
-        except:
-            print('tweepy error trying agian')
+        if reply != tweet.hook:
             try:
-                reply = create_reply(tweet.hook)
                 api.update_status(f'@{tweet.username} {reply}', tweet.id)
             except:
-                print('seccond error')
+                print('tweepy error trying agian')
+                try:
+                    reply = create_reply(tweet.hook)
+                    api.update_status(f'@{tweet.username} {reply}', tweet.id)
+                except:
+                    print('seccond error')
+                    pass
                 pass
-            pass
+        else:
+            print('tweet and hook the same, did not tweet.')
         print("-------------------")
 
         latest_id = tweet.id
