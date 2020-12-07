@@ -12,6 +12,8 @@ DoctrineBot is hosted on an AWS EC2 instance. Scripts are run from crontab. To r
 
 > echo $latest_id > latest_id.txt
 
+The following shell scripts need to be triggered from crontab to run the python.
+
 > nano run.sh
 
 Copy and past in ..
@@ -28,6 +30,8 @@ PATH=/usr/local/bin/:$PATH </br>
 cd doctrinebot/ </br>
 pipenv run python single_tweet.py >> ~/log.txt 2>&1
 
+
+Update crontab
 
 > crontab -e
 
