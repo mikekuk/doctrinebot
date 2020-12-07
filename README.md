@@ -1,6 +1,6 @@
 # doctrinebot_v1
 
-DoctrineBot V1 is built on GPT2-Simple, fine tuned in UK MoD Doctrine.
+DoctrineBot V1 is built on GPT2-Simple, fine tuned in UK MoD Doctrine. Twitter handle @BotDoctrine
 
 Due to size constraints, the model and checkpoints are not included in the repo.
 
