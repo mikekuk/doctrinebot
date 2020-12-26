@@ -1,10 +1,30 @@
 import re
 
-text = "the threat from China is on its doorstep, \n we need to defend ourselves and our territories very effectively. We can't stand idly by and watch as our territory is eroded and our people are displaced."
+text = """Are you plotting the Matrix?
+• Are you using proxies?
+• Are there any other themes or issues?
+• How is the audience relevant to the outcome of the operation?
+• How is the environment varied?
+• How is the threat equivalent to the threat of a counter-active act?
+• How is the experience of violent conflict measured and managed and at what levels of command do various people fall?
+• How is the context of the operation defined?
+• How is the threat defined?
+• What is the gain/loss balance?
+• How is the environment varied?
+• How is the threat measured and managed?
+• How is the environment varied?
+• How is the threat measured and managed?
+• How is the environment varied?
+• How is the threat measured and managed?
+• How is the environment varied?
+• How is the threat measured and managed?
+• How is the environment varied?
+• How is the threat measured and managed?"""
+
 
 def parse_for_tweeter(string):    
     # truncate at last sentance before 250 char
-    sentance_list = re.split(r'(?<=[.!?;\n]) +', string)
+    sentance_list = re.split(r'(?<=[.!?;:\n]) +', string)
     # sentance_list = string.split('.')
     if len(sentance_list[0]) > 249:
             return sentance_list[0][0:249]
@@ -14,8 +34,6 @@ def parse_for_tweeter(string):
             if len(new_string) + len(sentnace) <= 250:
                 new_string += sentnace + " "
         return new_string
-    
-
 
 if __name__ == "__main__":
     print(parse_for_tweeter(text))

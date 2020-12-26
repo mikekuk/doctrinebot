@@ -1,8 +1,7 @@
 import tweepy
 import json
 import re
-from generate import make_text
-from parse_txt import parse_for_tweeter
+from generate import create_reply
 
 account = 'BotDoctrine'
 
@@ -18,6 +17,9 @@ class MessageQue:
     def __init__(self):
         self.que = []
         self.length = len(self.que)
+    
+    def __repr__(self):
+        return str([tweet for tweet in self.que])
     
     def add(self, item):
         self.que.append(item)
@@ -35,7 +37,9 @@ class Tweet:
         self._account_removed = re.sub(rf'(?i)@{account}', '', self.text)
         self.hook = re.sub(r'https://\S+', '', self._account_removed)
         self.id = id
-
+    
+    def __repr__(self):
+        return f"< Tweet Object {self.id}: From {self.username}, Text: {self.text}, Hook: {self.hook} >"
 
 def login(twitter_keys):
     auth = tweepy.OAuthHandler(twitter_keys["CONSUMER_KEY"], twitter_keys["CONSUMER_SECRET"])
@@ -49,47 +53,23 @@ def login(twitter_keys):
             print("Error during authentication")
     return api
 
-def get_mentions():
+def get_mentions(api):
     que = MessageQue()
     mentions = api.mentions_timeline(since_id = lateset_id)
     for mention in mentions:
         que.add(Tweet(mention.text, mention.user.screen_name, mention.id))
     return que
 
-def post_replies(que):
-    def create_reply(hook):
-        doctrine = make_text(hook)
-        print(f'hook = {hook}')
-        # Remeoves prefix if ends in qyestion mark or over 120 char
-        print(f'Hook length = {len(hook)} and doc = {doctrine}')
-        if ((re.sub(r'\s', '', hook))[-1] == '?' ) or (len(hook) >= 120):
-            doctrine = doctrine[len(hook)+1:]
-        tweet_reply = parse_for_tweeter(doctrine)
-        print("-------------------")
-        print(f'@{tweet.username}: {tweet_reply}')
-        print("-------------------")
-        return tweet_reply
 
+def post_replies(que):
     while que.length > 0:
         tweet = que.pop()
-        reply = create_reply(tweet.hook)
-        if reply != tweet.hook:
-            try:
-                api.update_status(f'@{tweet.username} {reply}', tweet.id)
-            except:
-                print('tweepy error')
-                # if reply != tweet.hook:
-                #     try:
-                #         reply = create_reply(tweet.hook)
-                #         api.update_status(f'@{tweet.username} {reply}', tweet.id)
-                #     except:
-                #         print('seccond error')
-                #         pass
-                pass
-        else:
-            print('tweet and hook the same, did not tweet.')
-        print("-------------------")
-
+        reply, id = create_reply(tweet)
+        try:
+            api.update_status(reply, id)
+        except:
+            print('tweepy error')
+            pass
         latest_id = tweet.id
         with open('latest_id.txt', 'w') as doc:
             doc.write(str(latest_id))
@@ -97,6 +77,5 @@ def post_replies(que):
 
 if __name__ == '__main__':
     api = login(twitter_keys)
-    mentions = get_mentions()
-
+    mentions = get_mentions(api)
     post_replies(mentions)
