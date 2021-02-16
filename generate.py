@@ -27,9 +27,9 @@ def create_reply(tweet):
             doctrine = doctrine[len(hook)+1:]
         tweet_reply = parse_for_tweeter(doctrine)
         print("-------------------")
-        print(f'@{tweet.username}: {tweet_reply}')
+        print(f'@{tweet.username} {tweet_reply}')
         print("-------------------")
-        return f'@{tweet.username}: {tweet_reply}', tweet.id
+        return f'@{tweet.username} {tweet_reply}', tweet.id
 
 
 def single_tweet():
