@@ -38,7 +38,7 @@ def single_tweet():
 if __name__ == "__main__":
     print("\n --------------------- \n")
 
-    print(make_text('Are you plotting the Matrix?'))
-    # print(single_tweet())
+    # print(make_text("I've improved it."))
+    print(single_tweet())
 
     print("\n --------------------- \n")
