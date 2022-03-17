@@ -7,6 +7,8 @@ from parse_txt import parse_for_tweeter
 sess = gpt2.start_tf_sess()
 gpt2.load_gpt2(sess, run_name="run2")
 
+TEXT = "The mighty Trojan combat vehicle has"
+
 def make_text(user_input):
     text = gpt2.generate(sess, length=200, return_as_list=True ,temperature=0.8, prefix=user_input, include_prefix=True, truncate='<|endoftext|>')[0]
     
@@ -38,7 +40,7 @@ def single_tweet():
 if __name__ == "__main__":
     print("\n --------------------- \n")
 
-    # print(make_text("I've improved it."))
-    print(single_tweet())
+    print(make_text(TEXT))
+    # print(single_tweet())
 
     print("\n --------------------- \n")

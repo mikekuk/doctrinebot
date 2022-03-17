@@ -1,25 +1,6 @@
 import re
 
-text = """Are you plotting the Matrix?
-• Are you using proxies?
-• Are there any other themes or issues?
-• How is the audience relevant to the outcome of the operation?
-• How is the environment varied?
-• How is the threat equivalent to the threat of a counter-active act?
-• How is the experience of violent conflict measured and managed and at what levels of command do various people fall?
-• How is the context of the operation defined?
-• How is the threat defined?
-• What is the gain/loss balance?
-• How is the environment varied?
-• How is the threat measured and managed?
-• How is the environment varied?
-• How is the threat measured and managed?
-• How is the environment varied?
-• How is the threat measured and managed?
-• How is the environment varied?
-• How is the threat measured and managed?
-• How is the environment varied?
-• How is the threat measured and managed?"""
+text = """Bestselling Russian crime writer Boris Akunin has predicted"""
 
 
 def parse_for_tweeter(string):    
