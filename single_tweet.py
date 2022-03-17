@@ -17,10 +17,10 @@ if len(split_text) >= 6:
 else:
     fir_words = " ".join(split_text[:-1])
 
-string = make_text(string)
+string = make_text(fir_words)
 
 
-tweet = parse_for_tweeter(fir_words)
+tweet = parse_for_tweeter(string)
 
 api.update_status(tweet)
 
